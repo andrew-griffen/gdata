@@ -12,5 +12,19 @@ n = 100
 expenditure_data = tibble(id = 1:100, food = round(100*exp(rnorm(n))), clothing = round(100*exp(rnorm(n))), housing = round(200*exp(rnorm(n))), alcohol = round(20*exp(rnorm(n))))
 save_datasets(expenditure_data)
 
+#oecd data
+oecd <- read_csv("oecd.csv")
+iso <- read_csv("iso.csv")
+iso <- iso %>% 
+arrange(country) %>%
+group_by(alpha3) %>% # the complete group of interest
+mutate(duplicate = 1:n()) %>% # count number in each group
+filter(duplicate==1) %>%
+select(-duplicate) %>% 
+ungroup()
+oecd <- oecd %>% left_join(select(iso,country,alpha3),by="alpha3")
+oecd <- oecd %>% select(country,year,sex,life_expectancy)
+save_datasets(oecd)
+
 
 
