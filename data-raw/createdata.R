@@ -38,5 +38,6 @@ oecd <- oecd %>% select(country,year,sex,life_expectancy)
 save_datasets(oecd)
 
 sp <- read_csv("sp.csv")
+sp <- sp %>% as_tibble()
 save_datasets(sp)
 
