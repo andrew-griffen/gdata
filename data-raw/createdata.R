@@ -37,5 +37,6 @@ oecd <- oecd %>% left_join(select(iso,country,alpha3),by="alpha3")
 oecd <- oecd %>% select(country,year,sex,life_expectancy)
 save_datasets(oecd)
 
-
+sp <- read_csv("sp.csv")
+save_datasets(sp)
 
