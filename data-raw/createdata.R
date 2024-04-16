@@ -1,6 +1,7 @@
 library(MASS)
 library(tidyverse)
-library(griffen)
+#library(griffen)
+library(haven)
 
 save_datasets = function(...){
   datasets_list <- lapply(eval(substitute(alist(...))),deparse)
@@ -39,5 +40,29 @@ save_datasets(oecd)
 
 sp <- read_csv("sp.csv")
 sp <- sp %>% as_tibble()
+sp <- sp %>% mutate(returns = returns/100)
 save_datasets(sp)
+
+
+ak1991 = read_dta("NEW7080.dta")
+ak1991 %<>% rename(age = v1)
+ak1991 %<>% rename(education = v4)
+ak1991 %<>% rename(log_wage = v9)
+ak1991 %<>% rename(married = v10)
+ak1991 %<>% rename(census = v16)
+ak1991 %<>% rename(quarter_birth = v18)
+ak1991 %<>% rename(race = v19)
+ak1991 %<>% rename(birthyear = v27)
+ak1991 %<>% select(log_wage,
+              education,
+              quarter_birth,
+              birthyear,
+              census,
+              race)
+ak1991 %<>% mutate(race = if_else(race==1,"black","white"))
+ak1991 %<>% mutate(census = census + 1900)
+ak1991 %<>% mutate(birthyear = if_else(census==1980,birthyear + 1900,birthyear))
+save_datasets(ak1991)
+
+
 
