@@ -4,12 +4,12 @@
 \name{gdata-package}
 \alias{gdata}
 \alias{gdata-package}
-\title{gdata: Data for R class and homework.}
+\title{gdata: What the Package Does (One Line, Title Case)}
 \description{
-Data for R class and homework.
+What the package does (one paragraph).
 }
 \author{
-\strong{Maintainer}: Andrew Griffen \email{andrew.griffen@gmail.com}
+\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
 
 }
 \keyword{internal}

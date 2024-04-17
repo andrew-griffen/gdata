@@ -1,7 +1,8 @@
 library(MASS)
 library(tidyverse)
-#library(griffen)
+library(griffen)
 library(haven)
+library(magrittr)
 
 save_datasets = function(...){
   datasets_list <- lapply(eval(substitute(alist(...))),deparse)
@@ -43,6 +44,9 @@ sp <- sp %>% as_tibble()
 sp <- sp %>% mutate(returns = returns/100)
 save_datasets(sp)
 
+#oj
+oj <- read_csv("oj.csv")
+save_datasets(oj)
 
 ak1991 = read_dta("NEW7080.dta")
 ak1991 %<>% rename(age = v1)

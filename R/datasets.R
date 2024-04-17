@@ -12,5 +12,17 @@
 #' @source Angrist Data Archive.
 "ak1991"
 
+#' Orange juice sales data collected in the 1990s from Dominick's, which was a Chicago-area chain store.
+#'
+#' @format A tibble with 28,947 rows and 4 columns:
+#' \describe{
+#' \item{sales}{Sales volume ($).}
+#' \item{price}{Price ($).}
+#' \item{brand}{Orange juice brand.}
+#' \item{feat}{Indicator for whether brand was advertised that week or not.}
+#' }
+#' @source Kilts Center at the University of Chicago's Booth School of Business.
+"oj"
+
 
 
