@@ -24,5 +24,10 @@
 #' @source Kilts Center at the University of Chicago's Booth School of Business.
 "oj"
 
-
+#' Text of the Gettysburg Address.
+#'
+#' Famous speech about America's national purpose.
+#' @format A character.
+#' @source President Abraham Lincoln, 16th President of the United States of America.
+"gettysburg"
 
