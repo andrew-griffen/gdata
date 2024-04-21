@@ -31,3 +31,28 @@
 #' @source President Abraham Lincoln, 16th President of the United States of America.
 "gettysburg"
 
+#' Extract from the Current Population Survey.
+#'
+#' The main labor force suvery in the United States.
+#'
+#' @format      A tibble with  691,069 rows and 16 columns:
+#' \describe{
+#' \item{   age}{Age in years.}
+#' \item{   year}{Year of survey.}
+#' \item{   wage}{Hourly wage.}
+#' \item{   hours_lastweek}{Hours worked last week.}
+#' \item{   employed}{Indicator variable for whether employed.}
+#' \item{   education_category}{Three educationa categories.}
+#' \item{   educ_years}{Years of education.}
+#' \item{   black}{Indicator for black.}
+#' \item{   white}{Indicator for white.}
+#' \item{   female}{Indicator for female.}
+#' \item{   married}{Indicator for married}
+#' \item{   single}{Indicator for single.}
+#' \item{   divorced}{Indicator for divorced}
+#' \item{   state}{State of residence.}
+#' \item{   region}{Region of residence.}
+#' \item{   sampling_weight}{Sampling weight.}
+#' }
+#' @source IPUMS at University of Minnesota.
+"cps"
