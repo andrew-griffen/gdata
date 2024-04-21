@@ -5,9 +5,7 @@
 \alias{cps}
 \title{Extract from the Current Population Survey.}
 \format{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{ A tibble with  691,069 rows and 16 columns:
-}\if{html}{\out{</div>}}
-
+A tibble with 691,069 rows and 16 columns:
 \describe{
 \item{   age}{Age in years.}
 \item{   year}{Year of survey.}

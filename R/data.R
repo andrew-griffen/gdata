@@ -35,7 +35,7 @@
 #'
 #' The main labor force suvery in the United States.
 #'
-#' @format      A tibble with  691,069 rows and 16 columns:
+#' @format A tibble with 691,069 rows and 16 columns:
 #' \describe{
 #' \item{   age}{Age in years.}
 #' \item{   year}{Year of survey.}
@@ -56,3 +56,46 @@
 #' }
 #' @source IPUMS at University of Minnesota.
 "cps"
+
+#' Expenditure data from a hypothetical household survey.
+#'
+#' Data used for class.
+#'
+#' @format A tibble with 100 rows and 4 columns:
+#' \describe{
+#' \item{   id}{Respondent id.}
+#' \item{   food}{Expenditure on food.}
+#' \item{   clothing}{Expenditure on clothing.}
+#' \item{   housing}{Expenditure on housing.}
+#' \item{   alcohol}{Expenditure on alcohol.}
+#' }
+#' @source Created by Andrew S. Griffen
+"expenditure_data1"
+
+#' Expenditure data from a hypothetical household survey.
+#'
+#' Data used for class.
+#'
+#' @format A tibble with 100 rows and 201 columns:
+#' \describe{
+#' \item{   id}{Respondent id.}
+#' \item{   item"i"}{Expenditure on item i.}
+#' }
+#' @source Created by Andrew S. Griffen
+"expenditure_data2"
+
+#' Time series data on life expectancy for OECD countries.
+#'
+#' Data used for class.
+#'
+#' @format A tibble with 100 rows and 201 columns:
+#' \describe{
+#' \item{   country}{Country.}
+#' \item{   year}{Year.}
+#' \item{   sex}{Sex.}
+#' \item{   life_expectancy}{Life expectancy in years.}
+#' }
+#' @source Organisation for Economic Co-operation and Development (OECD) data
+"oecd"
+
+
