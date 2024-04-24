@@ -110,10 +110,10 @@ whales %<>% rename(long = `location-long`, lat = `location-lat`, time = timestam
 clark = read_csv("clark.csv")
 coges = read_csv("coges.csv")
 
-tbl1 <- tibble(id = c("1","2","3"), drew1 = c(1,2,3), drew2 = c(4,5,6), drew3 = c(7,8,9))
-tbl2 <- tibble(id = c(1,2,3), a = c(1,2,3), b = c(4,5,6) , c = c(7,8,9))
-tbl3 <- tibble(bla1l128a = c(1,2,3), id = c(1,2,3), ahfka1 = c(4,5,6), fdhsfka = c(7,8,9))
-tbl4 <- tibble(id = c(1,2,3), contribution_round1 = c(100,200,300), contribution_round2 = c(300,200,200))
+tbl1 <- tibble(id = c("1","2","3"), andrew1 = c(1, 2, 3), andrew2 = c(4, 5, 6), andrew3 = c(7, 8, 9))
+tbl2 <- tibble(id = c(1,2,3), a = c(1, 2, 3), b = c(4, 5, 6) , c = c(7, 8, 9))
+tbl3 <- tibble(bla1l128a = c(1, 2, 3), id = c(1, 2, 3), ahfka1 = c(4, 5, 6), fdhsfka = c(7, 8, 9))
+tbl4 <- tibble(id = c(1, 2, 3), contribution_round1 = c(100, 200, 300), contribution_round2 = c(300, 200, 200))
 
 n <- 10
 rounds <- 100
