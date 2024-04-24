@@ -4,6 +4,8 @@ library(tidyverse)
 library(haven)
 library(magrittr)
 library(zoo)
+library(tidyr)
+library(broom)
 
 save_datasets = function(...){
   datasets_list <- lapply(eval(substitute(alist(...))),deparse)
@@ -149,6 +151,39 @@ save_datasets(coges)
 # save_datasets(japan_travel,japan_shp)
 
 
+
+
+stocks <- read.csv("../../../Models/Taddy Data Science/MBAcourse-master/examples/stocks.csv")
+stocks$RET <- as.numeric(as.character(stocks$RET))
+stocks$date <- as.Date(as.character(stocks$date), format="%Y%m%d")
+stocks <- stocks %>% filter(TICKER!="" & RET!="")
+dups <- which(duplicated(stocks[,c("TICKER","date")]))
+stocks <- stocks[-dups,]
+stocks$month <- paste(format(stocks$date, "%Y-%m"),"-01",sep="")
+stocks$month <- as.Date(stocks$month)
+stocks %<>% as_tibble()
+
+
+agg <- function(r) prod(1+r, na.rm=TRUE) - 1
+stocks <- stocks %>%
+  				group_by(TICKER, month) %>%
+  				summarize(RET = agg(RET), SNP = agg(sprtrn), .groups="drop")
+stocks %<>% ungroup
+stocks %<>% rename(r = RET, r_sp = SNP, ticker = TICKER)
+
+stocks_nested = stocks %>% group_by(ticker) %>% nest()
+stocks_nested %<>% mutate(model = map(data,~lm(r ~ r_sp, .)))
+stocks_nested %<>% ungroup
+stocks_nested %<>% mutate(tidy_model = map(model,tidy))
+
+
+capm <- stocks_nested %>% select(ticker,tidy_model) %>% unnest(cols = c(tidy_model))
+capm %<>% mutate(term = case_when(term=="(Intercept)" ~ "alpha",
+								  term=="r_sp" ~ "beta",
+								  TRUE ~ NA_character_))
+capm %<>% rename(parameter = term)
+capm %<>% select(ticker,parameter,estimate)
+save_datasets(capm)
 
 
 

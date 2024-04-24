@@ -98,4 +98,16 @@
 #' @source Organisation for Economic Co-operation and Development (OECD) data
 "oecd"
 
+#' Estimates from Capital Asset Pricing Model for various stocks.
+#'
+#' Data used for class as an example of pivot_wider.
+#'
+#' @format A tibble with 1,096 rows and 3 columns:
+#' \describe{
+#' \item{   ticker parameter estimate}{Stock ticker.}
+#' \item{   parameter}{Alpha and beta estimates.}
+#' \item{   estimate}{Point estimate.}
+#' }
+#' @source Estimated from data used in Matt Taddy's Business Data Science
+"capm"
 

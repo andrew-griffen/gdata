@@ -4,12 +4,12 @@
 \name{gdata-package}
 \alias{gdata}
 \alias{gdata-package}
-\title{gdata: What the Package Does (One Line, Title Case)}
+\title{gdata: Datasets for R for Empirical Economics Research}
 \description{
-What the package does (one paragraph).
+Example datasets used for my course "R for Empirical Economics Research".
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Andrew Griffen \email{andrew.griffen@gmail.com}
 
 }
 \keyword{internal}
