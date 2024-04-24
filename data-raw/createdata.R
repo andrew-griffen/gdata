@@ -130,6 +130,7 @@ state_population <- state_population %>% mutate(year = as.integer(year))
 state_population <- state_population %>% select(state) %>% distinct() %>% crossing(tibble(year=1970:2014)) %>% full_join(state_population) %>% arrange(state,year)
 state_population <- state_population %>% dplyr::filter(year<=2010) %>% group_by(state) %>% mutate(population = na.approx(population,year))
 state_population <- state_population %>% left_join(region)
+state_population <- state_population |> ungroup()
 
 n <- 3
 form_df <- tibble(y = round(10*runif(3)), x1 = round(10*runif(3)), x2 = round(10*runif(3)), D = c("treated","control","treated") )
@@ -146,6 +147,7 @@ save_datasets(whales)
 save_datasets(clark)
 save_datasets(coges)
 # save_datasets(japan_travel,japan_shp)
+
 
 
 
