@@ -12,11 +12,26 @@ A tibble with 19 rows and 4 columns:
 \item{   lng}{Longitude.}
 \item{   lat}{Latitude.}
 }
+
+A tibble with 41 rows and 6 columns:
+\describe{
+\item{   name}{Mascot name}
+\item{   prefecture}{Japanese prefecture}
+\item{   prefecture_en}{Japanese prefecture (EN)}
+\item{   region}{Region of Japan}
+\item{   place}{Place in the Grand Prix}
+\item{   group}{Mascot sponsor}
+\item{   description}{Description of mascot}
+}
 }
 \source{
 '@VanDiemen_'
+
+\url{https://www.yurugp.jp}
 }
 \usage{
+blood_meridian
+
 blood_meridian
 }
 \description{

@@ -124,3 +124,22 @@
 #' }
 #' @source '@VanDiemen_'
 "blood_meridian"
+
+#' Mascot data from the 2023 Yuru-Kyara Grand Prix "Yuruverse 2023"
+#'
+#' @format A tibble with 41 rows and 6 columns:
+#' \describe{
+#' \item{   name}{Mascot name}
+#' \item{   prefecture}{Japanese prefecture}
+#' \item{   prefecture_en}{Japanese prefecture (EN)}
+#' \item{   region}{Region of Japan}
+#' \item{   place}{Place in the Grand Prix}
+#' \item{   group}{Mascot sponsor}
+#' \item{   description}{Description of mascot}
+#' }
+#' @source \url{https://www.yurugp.jp}
+"blood_meridian"
+
+
+
+

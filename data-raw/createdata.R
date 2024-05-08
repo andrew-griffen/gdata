@@ -6,6 +6,7 @@ library(magrittr)
 library(zoo)
 library(tidyr)
 library(broom)
+library(sf)
 
 save_datasets = function(...){
   datasets_list <- lapply(eval(substitute(alist(...))),deparse)
@@ -232,6 +233,57 @@ lat = c(31.604300240355077, 29.425593314328324, 28.75574167065598, 30.8889231565
 blood_meridian = tibble(location, description, lng, lat)
 
 save_datasets(blood_meridian)
+
+
+# tokyo_coord <- c(lng = 139.76141396948594, lat = 35.710422999564734)
+# save_datasets(tokyo_coord)
+
+
+mascots <- read_csv("mascots.csv")
+mascots <-
+mascots |>
+arrange(place)
+save_datasets(mascots)
+
+
+library(devtools)
+devtools::install_github("pdil/usmap")
+library(usmap)
+us_sf <- us_map(regions = "states")
+us_sf <- us_sf |> rename(state = full, iso3166_2 = abbr, geometry = geom)
+us_sf <- us_sf |> select(state, iso3166_2, geometry)
+save_datasets(us_sf)
+
+
+japan_shp <- st_read("../../../Japan_Shapefiles/JPN_adm1.shp", stringsAsFactors = FALSE)
+japan_shp %<>% mutate(NAME_1 = ifelse(NAME_1 == "Naoasaki", "Nagasaki", NAME_1))
+japan_shp %<>% mutate(NAME_1 = ifelse(NAME_1 == "Hyōgo", "Hyogo", NAME_1))
+japan_shp %<>% mutate(prefecture = NAME_1)
+japan_shp %<>% select(prefecture, geometry)
+japan_sf <- japan_shp
+
+japan_travel <- read_csv("japan_travel.csv")
+japan_travel <- japan_travel %>% mutate(visited = ifelse(is.na(visited), "no", "yes"))
+japan_travel$visited <- factor(japan_travel$visited, levels = c("yes", "no"))
+save_datasets(japan_travel, japan_sf)
+
+us_hex <- read_sf("us_states_hexgrid.geojson")
+us_hex <- us_hex |> mutate(google_name = gsub(" \\(United States\\)", "", google_name))
+us_hex %<>% rename(state = google_name)
+us_hex %<>% select(state, iso3166_2, geometry)
+us_hex <- st_cast(us_hex, "MULTIPOLYGON")
+
+electoral_college <- read_csv("electoral_college.csv")
+trump_biden <- read_csv("trump_biden_2024.csv")
+trump_biden <- trump_biden |> rename(trump_polls = trump)
+trump_biden <- trump_biden |> rename(biden_polls = biden)
+trump_biden <- trump_biden |> left_join(electoral_college)
+
+save_datasets(us_hex, trump_biden)
+
+party_colors <- c("Republicans" = "#2E74C0", "Democrats" = "#CB454A")
+save_datasets(party_colors)
+
 
 
 
