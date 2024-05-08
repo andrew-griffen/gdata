@@ -7,7 +7,7 @@
 \format{
 A tibble with 1,096 rows and 3 columns:
 \describe{
-\item{   ticker parameter estimate}{Stock ticker.}
+\item{   ticker}{Stock ticker.}
 \item{   parameter}{Alpha and beta estimates.}
 \item{   estimate}{Point estimate.}
 }

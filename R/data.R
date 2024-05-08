@@ -104,10 +104,23 @@
 #'
 #' @format A tibble with 1,096 rows and 3 columns:
 #' \describe{
-#' \item{   ticker parameter estimate}{Stock ticker.}
+#' \item{   ticker}{Stock ticker.}
 #' \item{   parameter}{Alpha and beta estimates.}
 #' \item{   estimate}{Point estimate.}
 #' }
 #' @source Estimated from data used in Matt Taddy's Business Data Science
 "capm"
 
+#' Locations from the novel Blood Meridian: or, The Evening Redness in the West by Cormac McCarthy.
+#'
+#' Data and decriptions from the wonderful Twitter thread \url{https://twitter.com/VanDiemen_/status/1787491589948076444}
+#'
+#' @format A tibble with 19 rows and 4 columns:
+#' \describe{
+#' \item{   location}{Place name.}
+#' \item{   description}{Description of location.}
+#' \item{   lng}{Longitude.}
+#' \item{   lat}{Latitude.}
+#' }
+#' @source '@VanDiemen_'
+"blood_meridian"

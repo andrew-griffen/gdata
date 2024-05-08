@@ -33,14 +33,14 @@ save_datasets(expenditure_data2)
 #oecd data
 oecd <- read_csv("oecd.csv")
 iso <- read_csv("iso.csv")
-iso <- iso %>% 
+iso <- iso %>%
 arrange(country) %>%
 group_by(alpha3) %>% # the complete group of interest
 mutate(duplicate = 1:n()) %>% # count number in each group
 filter(duplicate==1) %>%
-select(-duplicate) %>% 
+select(-duplicate) %>%
 ungroup()
-oecd <- oecd %>% left_join(select(iso,country,alpha3),by="alpha3")
+oecd <- oecd %>% left_join(select(iso, country, alpha3), by = "alpha3")
 oecd <- oecd %>% select(country, year, sex, life_expectancy)
 
 sp <- read_csv("sp.csv")
@@ -67,9 +67,9 @@ ak1991 %<>% select(log_wage,
               birthyear,
               census,
               race)
-ak1991 %<>% mutate(race = if_else(race==1,"black","white"))
+ak1991 %<>% mutate(race = if_else(race == 1, "black", "white"))
 ak1991 %<>% mutate(census = census + 1900)
-ak1991 %<>% mutate(birthyear = if_else(census==1980,birthyear + 1900,birthyear))
+ak1991 %<>% mutate(birthyear = if_else( census == 1980, birthyear + 1900, birthyear))
 save_datasets(ak1991)
 
 
@@ -79,7 +79,7 @@ save_datasets(gettysburg)
 
 #cps
 cps <- read_csv("cps.csv")
-cps <- cps[sample(1:nrow(cps),.2*nrow(cps)),]
+cps <- cps[sample( 1:nrow(cps), .2 * nrow(cps)), ]
 cps %<>% mutate(year = as.integer(year))
 save_datasets(cps)
 
@@ -97,8 +97,8 @@ boston <- read_csv("boston.csv")
 #heights
 heights <- read_csv("heights.csv")
 
-x <- tibble(key = c(1,2,3), val_x = c("x1","x2","x3"))
-y <- tibble(key = c(1,2,4), val_y = c("y1","y2","y3"))
+x <- tibble(key = c(1, 2, 3), val_x = c("x1", "x2", "x3"))
+y <- tibble(key = c(1, 2, 4), val_y = c("y1", "y2", "y3"))
 
 
 whales <- read_csv("whales.csv")
@@ -162,8 +162,6 @@ stocks <- stocks[-dups,]
 stocks$month <- paste(format(stocks$date, "%Y-%m"),"-01",sep="")
 stocks$month <- as.Date(stocks$month)
 stocks %<>% as_tibble()
-
-
 agg <- function(r) prod(1+r, na.rm=TRUE) - 1
 stocks <- stocks %>%
   				group_by(TICKER, month) %>%
@@ -184,6 +182,57 @@ capm %<>% mutate(term = case_when(term=="(Intercept)" ~ "alpha",
 capm %<>% rename(parameter = term)
 capm %<>% select(ticker,parameter,estimate)
 save_datasets(capm)
+
+
+
+description = c("Where the kid met the judge and burned down the tavern. Nacogdoches was the frontier gateway into Texas. A short rebellion against the Mexican government occured there in 1825, with some locals declaring the Republic of Fredonia.",
+"Where the kid smashed out the eye of the Mexican barman with a broken glass. Just called Bexar in the book, this is actually the modern day city of San Antonio. It was the center of Spanish/Mexican influence in Texas.",
+"No rivers flow out of this natural desert basin, which is the scene of the Comanche attack on the incompetent Captain White and his filibusters. The Comanche from the southern Great Plains would ride through here on their way to raid Mexicans.",
+"The mud-walled Presidio and ancient mission chapel mentioned in the book still stand in this dusty town south of the border. Glanton killed the old Indian woman on the plaza. Geronimo used to visit Janos to trade.",
+"The high pine forests of the Animas Peaks in the far south of New Mexico are the location of the scene where Black Jackson kills White Jackson.",
+"The gang meets the marooned forty-niners with the snakebit mule here. The story told in the book about the mining town being abandoned due to Apache raids in the 1830s is true. Today Santa Rita is a huge open-pit copper mine.",
+"The judge picking through the ruins and artifacts was inspired here to tell the parable of the highway robber. The cliff dwellings were built into the rocks by the Anasazi people, who mysteriously disappeared from history in the 1300s.",
+"After the massacre of the Gileños and fighting a running battle all the way back to Chihuahua, the victorious gang spends a riotous night at the seat of government, which turns into a days-long bacchanal. Current structure was built in 1881.",
+"A town on the Texas border, where the gang briefly stops as they hunt Apaches. We get an intimate glimpse into Glanton's heart as he takes a moment out in the desert by himself to think about his family somewhere in eastern Texas who he'll never see again.",
+"Like an oasis rising out of the surrounding flat desert, these granite hills contain depressions which naturally collect rainwater, drawing in thirsty travellers passing through the area since the beginning of time. Every crevice is covered in petroglyphs.",
+"The third scalping expedition that the Glanton Gang took from Chihuahua ended here in a massacre of the townsfolk. Perhaps included in Blood Meridian because of its association with the Crawford Battle of 1886.",
+"Capital of Sonora at the time, Glanton got one more contract for Apache scalps before himself becoming the hunted by General Elias. Today it's a quiet town surrounded by beautiful agricultural fields. Mentioned in the historical records as far back as the 1530s.",
+"The judge gave an extemporaneous lecture on the architecture of this mission, despite having never been there himself. The bodies of the scouts and the Vandiemenlander were found nearby, hanging upside down from a paloverde.",
+"Beautiful mission, the oldest European structure in Arizona. It was mentioned that as the Glanton Gang camped here a green meteor appeared overhead. Extremely well-preserved and a very popular tourist attraction today just outside of Tucson.",
+"Briefly occupied by the Mormon Batallion during the Mexican-American War, I actually can't find why McCarthy still has it occupied by American troops after the war but before the Gadsden Purchase. If anyone knows why, let me know.",
+"This dramatic volcanic wasteland outside of Puerto Peñasco is the site of the judge's famous exposition on war and some of McCarthy's most eloquent landscape descriptions. Today it is a UNESCO World Heritage Site and protected Mexican biosphere.",
+"This place on the California-Arizona-Mexico border where the Gila and Colorado Rivers meet has long been an important crossroads. Named after the Indian tribe that lived in the area. Glanton's luck finally ran out here in both the book and real life.",
+"Finally settled in 1769 by Junipero Serra, and always isolated from the rest of Mexico, San Diego had recently been captured by America in 1850 when the kid visits. It would have been a tiny village of just 650 people.",
+"The final harrowing scenes of Blood Meridian happen at this fort which had been built after the Civil War to protect the Texas frontier against Comanche attacks. It's a ghost town today, with a few old brick buildings still standing.")
+
+location = c("Nacogdoches, Texas",
+"San Antonio de Bexar",
+"Bolson de Mapini, Chihuahua",
+"Janos, Chihuahua",
+"Animas Mountains, New Mexico",
+"Santa Rita del Cobre Copper Mines, New Mexico",
+"Gila Cliff Dwellings, New Mexico",
+"Governor's Palace, Chihuahua",
+"Presidio, Texas",
+"Hueco Tanks, Texas",
+"Nácori Chico, Sonora",
+"Ures, Sonora",
+"Mission San Jose de Tumacacori, Arizona",
+"San Xavier del Bac, Arizona",
+"Presidio San Agustín del Tucsón, Arizona",
+"El Pinacate, Sonora",
+"Yuma, Arizona",
+"San Diego, California",
+"Fort Griffin, Texas")
+
+lng = c(-94.65557367273087, -98.49517555510062, -106.09891633023416, -108.19135834853053, -108.78329671794378, -108.07263760000137, -108.26978000978869, -106.07281639031231, -104.37213311934813, -106.04357364602406, -108.98090939774758, -110.38586610635605, -111.05048907858992, -111.00835084973995, -110.97273310612216, -113.50322932692085, -114.62424305509093, -117.15983896821592, -99.2265764826492)
+
+lat = c(31.604300240355077, 29.425593314328324, 28.75574167065598, 30.88892315655848, 31.565926571592716, 32.80705141358657, 33.22733186773855, 28.63906832178077, 29.56109949920634, 31.917299394786763, 29.687837546889742, 29.426050217423537, 31.56871732642278, 32.10706374123074, 32.22437649877388, 31.792591062358998, 32.69760349453199, 32.71788652676264, 32.921484211161584)
+
+blood_meridian = tibble(location, description, lng, lat)
+
+save_datasets(blood_meridian)
+
 
 
 
