@@ -246,13 +246,13 @@ arrange(place)
 save_datasets(mascots)
 
 
-library(devtools)
-devtools::install_github("pdil/usmap")
-library(usmap)
-us_sf <- us_map(regions = "states")
-us_sf <- us_sf |> rename(state = full, iso3166_2 = abbr, geometry = geom)
-us_sf <- us_sf |> select(state, iso3166_2, geometry)
-save_datasets(us_sf)
+# library(devtools)
+# devtools::install_github("pdil/usmap")
+# library(usmap)
+# us_sf <- us_map(regions = "states")
+# us_sf <- us_sf |> rename(state = full, iso3166_2 = abbr, geometry = geom)
+# us_sf <- us_sf |> select(state, iso3166_2, geometry)
+# save_datasets(us_sf)
 
 
 japan_shp <- st_read("../../../Japan_Shapefiles/JPN_adm1.shp", stringsAsFactors = FALSE)
@@ -281,8 +281,10 @@ trump_biden <- trump_biden |> left_join(electoral_college)
 
 save_datasets(us_hex, trump_biden)
 
-party_colors <- c("Republicans" = "#2E74C0", "Democrats" = "#CB454A")
+#party_colors <- c("Republicans" = "#2E74C0", "Democrats" = "#CB454A")
+party_colors <- c("#CB454A", "#2E74C0")
 save_datasets(party_colors)
+
 
 
 
